@@ -1,0 +1,8 @@
+<mat-form-field appearance="fill">
+    <mat-label>Type</mat-label>
+    <mat-select>
+      <mat-option *ngFor="let type of types" [value]="type.value">
+        {{type.value | titlecase}}
+      </mat-option>
+    </mat-select>
+</mat-form-field>
