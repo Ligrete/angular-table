@@ -3,6 +3,10 @@
   "compilerOptions": {
     "baseUrl": "./",
     "outDir": "./dist/out-tsc",
+    "paths": {
+      "@app/*": ["src/app/*"],
+      "@src/*": ["src/*"],
+    },
     "sourceMap": true,
     "declaration": false,
     "downlevelIteration": true,
@@ -16,8 +20,11 @@
     ],
     "lib": [
       "es2018",
-      "dom"
-    ]
+      "dom",
+      "dom.iterable"
+    ],
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
   },
   "angularCompilerOptions": {
     "fullTemplateTypeCheck": true,

@@ -6,6 +6,9 @@ import { AppComponent } from './app.component';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { PageTableModule } from './modules/page-table/page-table.module';
 import {MatToolbarModule} from '@angular/material/toolbar';
+import { reducer } from './store/table/table.reducer';
+import { StoreModule } from '@ngrx/store';
+import { StoreTableModule } from './store/table/store-table.module';
 
 @NgModule({
   declarations: [
@@ -16,7 +19,8 @@ import {MatToolbarModule} from '@angular/material/toolbar';
     AppRoutingModule,
     NoopAnimationsModule,
     PageTableModule,
-    MatToolbarModule
+    MatToolbarModule,
+    StoreTableModule
   ],
   providers: [],
   bootstrap: [AppComponent]

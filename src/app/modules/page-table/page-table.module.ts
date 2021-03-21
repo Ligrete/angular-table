@@ -21,7 +21,7 @@ import { UiSelectorModule } from 'src/app/ui/ui-selector/ui-selector.module';
     UiSelectorModule,
     MatSlideToggleModule,
     MatCardModule,
-    MatSelectModule 
+    MatSelectModule,
   ],
   exports: [PageTableComponent]
 })
