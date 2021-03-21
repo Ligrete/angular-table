@@ -1,9 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { ThemePalette } from '@angular/material/core';
-import { Store } from '@ngrx/store';
+import {select, Store} from '@ngrx/store';
+import { Subject } from 'rxjs';
 import { Observable } from 'rxjs';
 import { DataType } from 'src/app/models/table/data-type.enum';
 import { GetTableData } from 'src/app/store/table/table.actions';
+import {takeUntil} from 'rxjs/operators';
+import { State } from '@app/store/table/table.state';
+import { TableStoreSelectors } from '@app/store/table';
+import { JSONDataResponse } from '@app/models/table/json-data-response.model';
 
 export interface PeriodicElement {
   name: string;
@@ -52,16 +57,25 @@ const ELEMENT_DATA: PeriodicElement[] = [
 })
 export class PageTableComponent implements OnInit {
 
-  count$: Observable<number>
+  readonly unsubscribe = new Subject<void>();
 
   color: ThemePalette = 'primary';
 
-  displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
-  dataSource = ELEMENT_DATA;
+  displayedColumns: string[] = [
+    '_id',
+    // 'type',
+    // 'published',
+    // 'picture'
+  ];
 
-  constructor(private store: Store<{ table: any }>) {
-    this.count$ = store.select('table');
+  tableDataResp$: Observable<JSONDataResponse> = this.store.pipe(
+    select(TableStoreSelectors.getDataResponseState),
+    takeUntil(this.unsubscribe)
+  );
+
+  constructor(private store: Store<State>) {
   }
+
 
   ngOnInit() {
     this.clickData();

@@ -1,48 +1,38 @@
 import {Injectable} from '@angular/core';
 import {Actions, createEffect, Effect, ofType} from '@ngrx/effects';
 import {catchError, map, switchMap, withLatestFrom} from 'rxjs/operators';
-import {HttpErrorResponse} from '@angular/common/http';
 import {
   ActionTypes,
   GetTableData,
-  GetTableDataFailure,
   GetTableDataSuccess,
 } from './table.actions';
-import {select, Store} from '@ngrx/store';
-import { DataResponse } from 'src/app/models/table/data-response.model';
+import {Action, Store} from '@ngrx/store';
 import { State } from './table.state';
 import { TableService } from 'src/app/services/table/table.service';
-import { Observable } from 'rxjs';
-
-/**
- * Provides Accounts Store Effects.
- */
+import { JSONDataResponse } from 'src/app/models/table/json-data-response.model';
+import { Observable } from 'rxjs/internal/Observable';
 @Injectable()
-export class AccountsEffects {
+export class TableEffects {
 
-  /**
-   * @action 
-   * @return
-   */
-  getTable$ = createEffect(() => this.actions$.pipe(
+   @Effect()
+   public loadComments$: Observable<Action> = this.actions$.pipe(
     ofType<GetTableData>(ActionTypes.GetTableData),
     switchMap((action) => this.tableService
-      .getData(
+      .getDataAPI(
         action.payload.searchQuery,
         action.payload.type,
         action.payload.isDraft)
       .pipe(
-        map((tableResponse: DataResponse) =>
-          new GetTableDataSuccess({tableResponse})
+        map((tableResponse: JSONDataResponse) =>
+          new GetTableDataSuccess({tableResponse}),
         ))
-    ))
-  );
+      )
+    );
 
   constructor(
     private actions$: Actions,
     private store: Store<State>,
     private tableService: TableService,
-  ) {
-  }
+  ) {}
 }
 

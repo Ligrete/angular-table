@@ -1,10 +1,11 @@
-import { DataResponse } from "src/app/models/table/data-response.model";
-import { JSONDataResponse } from "src/app/models/table/json-data.model";
+import { JSONDataResponse } from "src/app/models/table/json-data-response.model";
 
 export interface State {
-    tableResponse: DataResponse;
+    loaded: boolean;
+    tableResponse: JSONDataResponse;
 }
 
 export const initialState: State = {
+    loaded: false,
     tableResponse: null
 };

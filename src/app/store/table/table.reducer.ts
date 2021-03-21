@@ -6,22 +6,15 @@ export function reducer(state = initialState, action: Actions): State {
     case ActionTypes.GetTableData: {
       return {
         ...state,
+        loaded: false,
         tableResponse: null
       };
     }
     case ActionTypes.GetTableDataSuccess: {
-      let tableResponse = state.tableResponse;
-      tableResponse = action.payload.tableResponse;
-
       return {
         ...state,
-        tableResponse,
-      };
-    }
-    case ActionTypes.GetTableDataFailure: {
-      return {
-        ...state,
-        tableResponse: null
+        loaded: true,
+        tableResponse: action.payload.tableResponse
       };
     }
 

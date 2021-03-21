@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import * as responseData from '@src/data.json';
 
 @Component({
   selector: 'app-root',
@@ -8,9 +7,4 @@ import * as responseData from '@src/data.json';
 })
 export class AppComponent {
   title = 'angular-app-ivy';
-
-  constructor() {
-    console.log(JSON.parse(JSON.stringify(responseData)));
-  }
-  
 }

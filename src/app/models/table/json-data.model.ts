@@ -1,7 +1,7 @@
 import { DataType } from "./data-type.enum";
 
 
-export class JSONDataResponse {
+export class JSONData {
   id: string;
   type: DataType
 }

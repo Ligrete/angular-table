@@ -3,7 +3,7 @@ import {State} from './table.state';
 
 export const getAccountsState = (state: State) => state;
 
-export const getAccountsResponseState = createSelector(
+export const getDataResponseState = createSelector(
   getAccountsState,
   (state: State) => state.tableResponse
 );

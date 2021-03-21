@@ -1,14 +1,11 @@
-import { HttpErrorResponse } from '@angular/common/http';
 import {Action} from '@ngrx/store';
-import { DataResponse } from 'src/app/models/table/data-response.model';
 import { DataType } from 'src/app/models/table/data-type.enum';
-import { JSONDataResponse } from 'src/app/models/table/json-data.model';
+import { JSONDataResponse } from 'src/app/models/table/json-data-response.model';
 
 
 export enum ActionTypes {
   GetTableData = '[Table Data] Get TableData',
   GetTableDataSuccess = '[Table Data] Get TableData Success',
-  GetTableDataFailure = '[Table Data] Get TableData Failure',
 }
 
 export class GetTableData implements Action {
@@ -21,18 +18,11 @@ export class GetTableData implements Action {
   export class GetTableDataSuccess implements Action {
     public readonly type = ActionTypes.GetTableDataSuccess;
   
-    constructor(public payload: { tableResponse: DataResponse }) {
+    constructor(public payload: { tableResponse: JSONDataResponse }) {
     }
   }
   
-  export class GetTableDataFailure implements Action {
-    public readonly type = ActionTypes.GetTableDataFailure;
-  
-    constructor(public payload: { response: HttpErrorResponse }) {
-    }
-  }
 
 export type Actions =
     | GetTableData
-    | GetTableDataSuccess
-    | GetTableDataFailure;
+    | GetTableDataSuccess;

@@ -1,20 +1,20 @@
 import {Injectable} from '@angular/core';
-import {Observable} from 'rxjs';
+import {Observable, Subject} from 'rxjs';
 import {HttpClient} from '@angular/common/http';
 import { DataType } from 'src/app/models/table/data-type.enum';
-import { DataResponse } from 'src/app/models/table/data-response.model';
 import * as responseData from '@src/data.json';
+import { JSONDataResponse } from 'src/app/models/table/json-data-response.model';
+import { State } from 'src/app/store/table/table.state';
+import { map } from 'rxjs/internal/operators/map';
 
-
-/**
- * Implementation of `all-accounts` APIs.
- * @see [Swagger] https://dev.admin.mouseapp.io/swagger/index.html
- */
 @Injectable({providedIn: 'root'})
 export class TableService {
   readonly host = window.location.host;
 
-  constructor(private http: HttpClient) {
+  private readonly unsubscribe = new Subject();
+
+  constructor(
+    private http: HttpClient) {
   }
 
   /**
@@ -25,13 +25,16 @@ export class TableService {
    *
    * @return 
    */
-  getData(
+  getDataAPI(
     searchQuery: string,
     type: DataType,
     isDraft: boolean,
-  ): Observable<any> {
-    return JSON.parse(JSON.stringify(responseData))
+  ): Observable<JSONDataResponse> {
+    return this.http.get('assets/data.json').pipe(map(data=>{
+      return JSON.parse(JSON.stringify(data));
+    }));
   }
+
 
 }
 
