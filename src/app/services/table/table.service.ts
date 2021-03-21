@@ -11,7 +11,7 @@ import * as responseData from '@src/data.json';
  * @see [Swagger] https://dev.admin.mouseapp.io/swagger/index.html
  */
 @Injectable({providedIn: 'root'})
-export class AccountsService {
+export class TableService {
   readonly host = window.location.host;
 
   constructor(private http: HttpClient) {

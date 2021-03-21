@@ -12,12 +12,17 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
   declarations: [],
   imports: [
     CommonModule,
-    StoreModule.forFeature('app', reducer),
+    // StoreModule.forFeature('app', reducer),
+    // StoreModule.forRoot({}, {}),
+    // StoreRouterConnectingModule.forRoot(),
+    // StoreDevtoolsModule.instrument({name: 'Mouse Store'}),
+    // EffectsModule.forRoot([]),
+    StoreModule.forRoot({ table: reducer }),
+
     StoreModule.forRoot({}, {}),
     StoreRouterConnectingModule.forRoot(),
-    StoreDevtoolsModule.instrument({name: 'Mouse Store'}),
+    StoreDevtoolsModule.instrument({name: 'TableNGRXStore'}),
     EffectsModule.forRoot([]),
-    StoreModule.forRoot({ table: reducer }),
   ]
 })
 export class StoreTableModule { }
