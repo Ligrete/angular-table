@@ -8,7 +8,7 @@ import { PageTableModule } from './modules/page-table/page-table.module';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import { reducer } from './store/table/table.reducer';
 import { StoreModule } from '@ngrx/store';
-import { StoreTableModule } from './store/table/store-table.module';
+import {  TableStoreModule } from './store/table/store-table.module';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreRouterConnectingModule } from '@ngrx/router-store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
@@ -26,11 +26,11 @@ import { HttpClientModule } from '@angular/common/http';
     NoopAnimationsModule,
     PageTableModule,
     MatToolbarModule,
-    StoreTableModule,
-    StoreModule.forRoot({}, {}),
-    EffectsModule.forRoot([]),
+    TableStoreModule,
+    // StoreModule.forRoot({}, {}),
+    // EffectsModule.forRoot([]),
     StoreRouterConnectingModule.forRoot(),
-    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production })
+    // StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production })
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -9,6 +9,7 @@ import {takeUntil} from 'rxjs/operators';
 import { State } from '@app/store/table/table.state';
 import { TableStoreSelectors } from '@app/store/table';
 import { JSONDataResponse } from '@app/models/table/json-data-response.model';
+import { DataResponse } from '@app/models/table/data-response.model';
 
 export interface PeriodicElement {
   name: string;
@@ -69,7 +70,7 @@ export class PageTableComponent implements OnInit {
   ];
 
   tableDataResp$: Observable<JSONDataResponse> = this.store.pipe(
-    select(TableStoreSelectors.getDataResponseState),
+    select(TableStoreSelectors.getAppState),
     takeUntil(this.unsubscribe)
   );
 
@@ -79,6 +80,10 @@ export class PageTableComponent implements OnInit {
 
   ngOnInit() {
     this.clickData();
+
+    this.tableDataResp$.subscribe((data)=> {
+      console.log(data);
+    })
   }
 
   clickData() {
@@ -88,5 +93,9 @@ export class PageTableComponent implements OnInit {
 
   getData( searchQuery: string, type: DataType, isDraft: boolean ) {
     this.store.dispatch(new GetTableData({searchQuery, type, isDraft}))
+  }
+
+  Logging( data: any) {
+    console.log('Data', data);
   }
 }

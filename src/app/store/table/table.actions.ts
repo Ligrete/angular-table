@@ -1,3 +1,4 @@
+import { DataResponse } from '@app/models/table/data-response.model';
 import {Action} from '@ngrx/store';
 import { DataType } from 'src/app/models/table/data-type.enum';
 import { JSONDataResponse } from 'src/app/models/table/json-data-response.model';

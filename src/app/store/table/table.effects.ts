@@ -14,8 +14,7 @@ import { Observable } from 'rxjs/internal/Observable';
 @Injectable()
 export class TableEffects {
 
-   @Effect()
-   public loadComments$: Observable<Action> = this.actions$.pipe(
+  loadComments$ = createEffect(() =>  this.actions$.pipe(
     ofType<GetTableData>(ActionTypes.GetTableData),
     switchMap((action) => this.tableService
       .getDataAPI(
@@ -23,11 +22,12 @@ export class TableEffects {
         action.payload.type,
         action.payload.isDraft)
       .pipe(
-        map((tableResponse: JSONDataResponse) =>
+        map((tableResponse: any) =>
           new GetTableDataSuccess({tableResponse}),
         ))
       )
-    );
+    )
+  );
 
   constructor(
     private actions$: Actions,

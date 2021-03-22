@@ -6,14 +6,12 @@ export function reducer(state = initialState, action: Actions): State {
     case ActionTypes.GetTableData: {
       return {
         ...state,
-        loaded: false,
         tableResponse: null
       };
     }
     case ActionTypes.GetTableDataSuccess: {
       return {
         ...state,
-        loaded: true,
         tableResponse: action.payload.tableResponse
       };
     }
