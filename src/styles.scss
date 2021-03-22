@@ -1,5 +1,14 @@
-@import '@angular/material/prebuilt-themes/pink-bluegrey.css';
+// @import '@angular/material/prebuilt-themes/pink-bluegrey.css';
+@import '@angular/material/prebuilt-themes/deeppurple-amber.css';
+
+// /home/ligrete/Git/angular-app-ivy/node_modules/@angular/material/prebuilt-themes/pink-bluegrey.css
+// /home/ligrete/Git/angular-app-ivy/node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css
 
 html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif;  background: #303030; }
+// body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif;  background: #303030; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif;  background: #dddddd; }
 
+body {
+    overflow-x: hidden;
+    min-width: 384px;
+}
