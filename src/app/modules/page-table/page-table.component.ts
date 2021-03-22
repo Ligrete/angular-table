@@ -63,14 +63,15 @@ export class PageTableComponent implements OnInit {
   color: ThemePalette = 'primary';
 
   displayedColumns: string[] = [
-    '_id',
-    // 'type',
-    // 'published',
-    // 'picture'
+    'picture',
+    'name',
+    'type',
+    'published',
+    'tags'
   ];
 
   tableDataResp$: Observable<JSONDataResponse> = this.store.pipe(
-    select(TableStoreSelectors.getAppState),
+    select(TableStoreSelectors.selectTableList),
     takeUntil(this.unsubscribe)
   );
 
@@ -83,7 +84,7 @@ export class PageTableComponent implements OnInit {
 
     this.tableDataResp$.subscribe((data)=> {
       console.log(data);
-    })
+    });
   }
 
   clickData() {

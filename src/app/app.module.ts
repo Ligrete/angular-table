@@ -27,10 +27,6 @@ import { HttpClientModule } from '@angular/common/http';
     PageTableModule,
     MatToolbarModule,
     TableStoreModule,
-    // StoreModule.forRoot({}, {}),
-    // EffectsModule.forRoot([]),
-    StoreRouterConnectingModule.forRoot(),
-    // StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production })
   ],
   providers: [],
   bootstrap: [AppComponent]

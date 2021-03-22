@@ -1,8 +1,9 @@
+import { createSelector } from '@ngrx/store';
 import {State} from './table.state';
 
-export const getAppState = (state: State) => state.tableResponse;
+export const selectState = (state: any) => state.root;
 
-// export const getDataResponseState = createSelector(
-//   getAppState,
-//   (state: State) => state.tableResponse
-// );
+export const selectTableList = createSelector(
+  selectState,
+  (state: State) => state.tableResponse
+);

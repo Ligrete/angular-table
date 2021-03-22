@@ -11,4 +11,4 @@ export class JSONDataResponse {
         id: string;
         name: string;
     }[];
-}[];
+};
