@@ -16,11 +16,72 @@
         <div class="input-el slider">
           <mat-slide-toggle [color]="color">isDraft</mat-slide-toggle>
         </div>
+
+        <div class="input-el">
+          <button (click)="clickData()" mat-raised-button>Basic</button>
+        </div>
+
+        <ng-container *ngIf="(tableDataResp$ | async) as account">
+          <h1> Test {{ account }}</h1>
+        </ng-container>
       </mat-card>
 
     </div>     
     <div class="container__content">
-      <app-ui-table></app-ui-table>
+      
+      <table mat-table [dataSource]="(tableDataResp$ | async)" class="mat-elevation-z8">
+
+        <!--- Note that these columns can be defined in any order.
+              The actual rendered columns are set as a property on the row definition" -->
+      
+        <!-- Position Column -->
+        <!-- <ng-container matColumnDef="position">
+          <th mat-header-cell *matHeaderCellDef> No. </th>
+          <td mat-cell *matCellDef="let element"> {{element.position}} </td>
+        </ng-container>
+      
+
+        <ng-container matColumnDef="name">
+          <th mat-header-cell *matHeaderCellDef> Name </th>
+          <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+        </ng-container>
+      
+ 
+        <ng-container matColumnDef="weight">
+          <th mat-header-cell *matHeaderCellDef> Weight </th>
+          <td mat-cell *matCellDef="let element"> {{element.weight}} </td>
+        </ng-container>
+      
+
+        <ng-container matColumnDef="symbol">
+          <th mat-header-cell *matHeaderCellDef> Symbol </th>
+          <td mat-cell *matCellDef="let element"> {{element.symbol}} </td>
+        </ng-container> -->
+
+        <ng-container matColumnDef="_id">
+          <th mat-header-cell *matHeaderCellDef> ID </th>
+          <td mat-cell *matCellDef="let element"> {{ element}} </td>
+        </ng-container>
+
+        <!-- <ng-container matColumnDef="type">
+          <th mat-header-cell *matHeaderCellDef> ID </th>
+          <td mat-cell *matCellDef="let element"> {{element._id}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="published">
+          <th mat-header-cell *matHeaderCellDef> ID </th>
+          <td mat-cell *matCellDef="let element"> {{element._id}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="picture">
+          <th mat-header-cell *matHeaderCellDef> ID </th>
+          <td mat-cell *matCellDef="let element"> {{element._id}} </td>
+        </ng-container> -->
+      
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+
     </div>
 </div>
 

@@ -1,11 +1,15 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { PageTableComponent } from './page-table.component';
-import { MatSliderModule, MatButtonModule, MatIconModule, MatDividerModule, MatCardModule } from '@angular/material';
-import { UiTableModule } from 'src/app/ui/ui-table/ui-table.module';
 import {MatSelectModule} from '@angular/material/select';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import { UiSelectorModule } from 'src/app/ui/ui-selector/ui-selector.module';
+import { MatButtonModule } from '@angular/material/button';
+import { MatTableModule } from '@angular/material/table';
+import {MatCardModule} from '@angular/material/card';
+import {MatSliderModule} from '@angular/material/slider';
+import {MatIconModule} from '@angular/material/icon';
+import {MatDividerModule} from '@angular/material/divider';
 
 
 
@@ -13,15 +17,15 @@ import { UiSelectorModule } from 'src/app/ui/ui-selector/ui-selector.module';
   declarations: [PageTableComponent],
   imports: [
     CommonModule,
+    UiSelectorModule,
+    MatSlideToggleModule,
+    MatCardModule,
+    MatSelectModule,
+    MatTableModule,
     MatSliderModule,
     MatButtonModule,
     MatIconModule,
     MatDividerModule,
-    UiTableModule,
-    UiSelectorModule,
-    MatSlideToggleModule,
-    MatCardModule,
-    MatSelectModule 
   ],
   exports: [PageTableComponent]
 })
