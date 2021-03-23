@@ -1,3 +1,4 @@
+import { DataIsDraft } from '@app/models/table/data-is-draft.enum';
 import { DataResponse } from '@app/models/table/data-response.model';
 import {Action} from '@ngrx/store';
 import { DataType } from 'src/app/models/table/data-type.enum';
@@ -12,7 +13,7 @@ export enum ActionTypes {
 export class GetTableData implements Action {
     public readonly type = ActionTypes.GetTableData;
   
-    constructor(public payload: { searchQuery: string, type: DataType, isDraft: boolean}) {
+    constructor(public payload: { searchQuery: string, type: DataType, isDraft: DataIsDraft}) {
     }
   }
   

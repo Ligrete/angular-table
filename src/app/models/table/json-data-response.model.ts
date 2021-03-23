@@ -1,3 +1,4 @@
+import { DataIsDraft } from "./data-is-draft.enum";
 import { DataType } from "./data-type.enum";
 
 export class JSONDataResponse {
@@ -7,6 +8,10 @@ export class JSONDataResponse {
     picture: string;
     published: string;
     tags: string[];
+    author: {
+        first: string;
+        last: string;
+    }
     observers: {
         id: string;
         name: string;

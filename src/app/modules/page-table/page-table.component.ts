@@ -10,7 +10,13 @@ import { State } from '@app/store/table/table.state';
 import { TableStoreSelectors } from '@app/store/table';
 import { JSONDataResponse } from '@app/models/table/json-data-response.model';
 import { DataResponse } from '@app/models/table/data-response.model';
+import { FormBuilder, Validators } from '@angular/forms';
+import { DataIsDraft } from '@app/models/table/data-is-draft.enum';
 
+
+interface Types {
+  value: string;
+}
 @Component({
   selector: 'app-page-table',
   templateUrl: './page-table.component.html',
@@ -34,34 +40,68 @@ export class PageTableComponent implements OnInit {
     'tags'
   ];
 
+  typesList: Types[] = [
+    {value: DataType.ALL},
+    {value: DataType.GREEN},
+    {value: DataType.RED},
+    {value: DataType.BLUE}
+  ];
+
+  isDraftList: Types[] = [
+    {value: DataIsDraft.ALL},
+    {value: DataIsDraft.FALSE},
+    {value: DataIsDraft.TRUE},
+  ];
+
+  selected = DataType.ALL;
+
   tableDataResp$: Observable<JSONDataResponse> = this.store.pipe(
     select(TableStoreSelectors.selectTableList),
     takeUntil(this.unsubscribe)
   );
 
-  constructor(private store: Store<State>) {
+  form = this.fb.group({
+    searchQuery: [''],
+    Type: [DataType.ALL],
+    isDraft: [DataIsDraft.ALL],
+  });
+
+  constructor(
+    private store: Store<State>,
+    private fb: FormBuilder
+  ) {
+      if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)){
+        this.userAgentMobile = true;
+      }else{
+        this.userAgentMobile = false;
+      }
   }
 
 
   ngOnInit() {
     this.clickData();
-    // this.tableDataResp$.subscribe((data)=> {
-    //   console.log(data);
-    // });
-
-    if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)){
-      this.userAgentMobile = true;
-    }else{
-      this.userAgentMobile = false;
-    }
   }
 
-  clickData() {
-    const type =  DataType.BLUE;
-    this.getData('search', type, true);
+  clickData() {    
+    const searchQuery : string = this.form.get('searchQuery').value;
+    const isDraft : DataIsDraft = this.form.get('isDraft').value;
+    const Type : DataType = this.form.get('Type').value;
+    this.getData(searchQuery, Type, isDraft);
+    console.log(`${searchQuery}, ${Type}, ${isDraft}`);
+    
   }
 
-  getData( searchQuery: string, type: DataType, isDraft: boolean ) {
+  getData( searchQuery: string, type: DataType, isDraft: DataIsDraft ) {
     this.store.dispatch(new GetTableData({searchQuery, type, isDraft}))
+  }
+
+  clickReset() {
+    this.form.setValue({
+      searchQuery: [''],
+      Type: [DataType.ALL],
+      isDraft: [DataIsDraft.ALL],
+    });
+    this.getData('', DataType.ALL, DataIsDraft.ALL);
+    // this.clickData();
   }
 }

@@ -24,31 +24,62 @@
 
 
       <mat-expansion-panel (opened)="panelOpenState = true"
-        (closed)="panelOpenState = false" [expanded]="userAgentMobile">
+        (closed)="panelOpenState = false" [expanded]="!userAgentMobile" [disabled]="!userAgentMobile">
+
         <mat-expansion-panel-header>
           <mat-panel-title>
-          Фильтры
+            Фильтры
           </mat-panel-title>
         </mat-expansion-panel-header>
-        <div class="filter">
+
+        <div class="filter" [formGroup]="form">
           <div class="input-el">
-            <app-ui-selector></app-ui-selector>
+            <mat-form-field class="example-full-width">
+              <mat-label>Search</mat-label>
+              <input matInput placeholder="Example : Ivan" [formControlName]="'searchQuery'">
+            </mat-form-field>
           </div>
           <div class="input-el">
-            <app-ui-selector></app-ui-selector>
+            <!-- <app-ui-selector ></app-ui-selector> -->
+
+            <mat-form-field appearance="fill">
+              <mat-label>Type</mat-label>
+              <mat-select  [formControlName]="'Type'">
+                <mat-option *ngFor="let type of typesList" [value]="type.value">
+                  {{type.value | titlecase}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+
           </div>
+
           <div class="input-el">
-            <app-ui-selector></app-ui-selector>
+            <!-- <app-ui-selector ></app-ui-selector> -->
+
+            <mat-form-field appearance="fill">
+              <mat-label>isDraft</mat-label>
+              <mat-select  [formControlName]="'isDraft'">
+                <mat-option *ngFor="let type of isDraftList" [value]="type.value">
+                  {{type.value | titlecase}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+
           </div>
     
-          <div class="input-el slider">
-            <mat-slide-toggle [color]="color">isDraft</mat-slide-toggle>
-          </div>
+          <!-- <div class="input-el slider">
+            <mat-slide-toggle [color]="color" [formControlName]="'isDraft'">isDraft</mat-slide-toggle>
+          </div> -->
   
           <div class="input-el">
-            <button (click)="clickData()" mat-raised-button>Basic</button>
+            <button (click)="clickData()" mat-raised-button>Поиск</button>
+          </div>
+
+          <div class="input-el">
+            <button (click)="clickReset()" mat-raised-button>Сбросить</button>
           </div>
         </div>
+
       </mat-expansion-panel>
 
     </div>     
