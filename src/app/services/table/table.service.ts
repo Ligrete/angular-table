@@ -48,7 +48,7 @@ export class TableService {
             (searchQuery !== '' && 
             (
               element?.author?.first.includes(searchQuery) || element?.author?.last.includes(searchQuery) 
-               || element?.tags.join().includes(searchQuery) 
+               || element?.tags.join().includes(searchQuery)  
             ) 
             ) || searchQuery === '' ),
         );

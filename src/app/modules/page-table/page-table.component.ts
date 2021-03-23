@@ -37,7 +37,8 @@ export class PageTableComponent implements OnInit {
     'name',
     'type',
     'published',
-    'tags'
+    'tags',
+    'isDraft'
   ];
 
   typesList: Types[] = [
