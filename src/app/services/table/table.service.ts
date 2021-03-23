@@ -38,39 +38,6 @@ export class TableService {
         console.log('data', data);
         return data
 
-        // filtered = data.map( element => {
-        //   console.log(element);
-        //   if (
-        //     (type !== DataType.ALL && element.type === type)
-        //   ) {
-        //     return element
-        //   }
-        // });
-      
-        // if (type !== DataType.ALL) {
-        //   filtered = data
-        //   .filter(element => element.type === type);
-        // }
-
-        // if (isDraft !== DataIsDraft.ALL) {
-        //   filtered = data
-        //   .filter(element => String(element.isDraft) === String(isDraft));
-        // }
-
-        // const source = from(data);
-        // const filteredType = source.pipe(
-        //   filter(element => (type !== DataType.ALL &&  element.type === type) ||  type === DataType.ALL)
-        //   // filter(element => String(element.isDraft) === String(isDraft) && isDraft !== DataIsDraft.ALL),
-        // );
-        
-
-        // const filteredIsDraft = filteredType.pipe(
-        //   filter(element => (isDraft !== DataIsDraft.ALL && String(element.isDraft) === String(isDraft)) || isDraft === DataIsDraft.ALL)
-        //   // filter(element => String(element.isDraft) === String(isDraft) && isDraft !== DataIsDraft.ALL),
-        // );
-
-
-        
       } else {
 
         const source = from(data);
@@ -80,22 +47,19 @@ export class TableService {
           filter(element => 
             (searchQuery !== '' && 
             (
-              element?.author?.first.includes(searchQuery) || element?.author?.last.includes(searchQuery)  || element?.tags.join().includes(searchQuery)
+              element?.author?.first.includes(searchQuery) || element?.author?.last.includes(searchQuery) 
+               || element?.tags.join().includes(searchQuery) 
             ) 
             ) || searchQuery === '' ),
-          // filter(element => 
-          //   (searchQuery !== '' && 
-          //   (element?.tags.join().includes(searchQuery))
-          //   ) || searchQuery === '' )
         );
+        const subscribes = filteredAll.subscribe(val => {
+          filtered.push(val);
+        });
 
-        // const subscribel = filteredType.subscribe(val => console.log('filteredType',val));
-        // const subscribes = filteredIsDraft.subscribe(val => console.log('filteredIsDraft',val));
-
-        const subscribes = filteredAll.subscribe(val => console.log('filteredAll',val));
-        subscribes.unsubscribe()
         console.log('filtered', filtered);
+        subscribes.unsubscribe()
         return filtered
+
       }
     }));
   }
