@@ -3,13 +3,16 @@ import { CommonModule } from '@angular/common';
 import { PageTableComponent } from './page-table.component';
 import {MatSelectModule} from '@angular/material/select';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
-import { UiSelectorModule } from 'src/app/ui/ui-selector/ui-selector.module';
 import { MatButtonModule } from '@angular/material/button';
 import { MatTableModule } from '@angular/material/table';
 import {MatCardModule} from '@angular/material/card';
 import {MatSliderModule} from '@angular/material/slider';
 import {MatIconModule} from '@angular/material/icon';
 import {MatDividerModule} from '@angular/material/divider';
+import {MatChipsModule} from '@angular/material/chips';
+import {MatExpansionModule} from '@angular/material/expansion';
+import {MatInputModule} from '@angular/material/input';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -17,7 +20,6 @@ import {MatDividerModule} from '@angular/material/divider';
   declarations: [PageTableComponent],
   imports: [
     CommonModule,
-    UiSelectorModule,
     MatSlideToggleModule,
     MatCardModule,
     MatSelectModule,
@@ -26,6 +28,10 @@ import {MatDividerModule} from '@angular/material/divider';
     MatButtonModule,
     MatIconModule,
     MatDividerModule,
+    MatChipsModule,
+    MatExpansionModule,
+    MatInputModule,
+    FormsModule, ReactiveFormsModule
   ],
   exports: [PageTableComponent]
 })

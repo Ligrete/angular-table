@@ -13,7 +13,7 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
   imports: [
     CommonModule,
 
-    StoreModule.forRoot(reducer),
+    StoreModule.forRoot({root: reducer}),
     StoreDevtoolsModule.instrument({name: 'TableNGRXStore'}),
     EffectsModule.forRoot([TableEffects]),
   ]
